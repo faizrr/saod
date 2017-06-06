@@ -30,11 +30,19 @@ export default class LinkedList {
   }
 
   removeByIndex (index) {
-    const itemToModify = this._find(index)
-    const previousItem = itemToModify.previous
+    if (index === 0) {
+      const itemToRemove = this._head
 
-    previousItem.next = itemToModify.next
-    itemToModify.next = previousItem
+      this._head = this._head.next
+      this._head.previous = itemToRemove.previous
+      this._head.previous.next = this._head
+    } else {
+      const itemToModify = this._find(index)
+      const previousItem = itemToModify.previous
+
+      previousItem.next = itemToModify.next
+      itemToModify.next = previousItem
+    }
   }
 
   *[Symbol.iterator]() {

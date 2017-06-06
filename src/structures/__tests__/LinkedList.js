@@ -33,4 +33,18 @@ describe('removeByIndex', () => {
 
     expect(result).toEqual([1, 3])
   })
+
+  it('works [2]', () => {
+    const list = new LinkedList()
+    list.addByIndex(0, 1)
+    list.addByIndex(1, 2)
+    list.removeByIndex(0)
+
+    let result = []
+    for (let i of list) {
+      result.push(i)
+    }
+
+    expect(result).toEqual([2])
+  })
 })
