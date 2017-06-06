@@ -29,6 +29,17 @@ export default class LinkedList {
     }
   }
 
+  cleanUp () {
+    let i = this._head.next
+    while (i !== this._head) {
+      i.previous = null
+      const nextItem = i.next
+      i.next = null
+      i = nextItem
+    }
+    this._head = null
+  }
+
   removeByIndex (index) {
     if (index === 0) {
       const itemToRemove = this._head

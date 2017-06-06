@@ -24,6 +24,11 @@ export default class Stack {
 
   pop () {
     const dataToReturn = this._lastItem.data
+
+    if (dataToReturn.cleanUp) {
+      dataToReturn.cleanUp()
+    }
+
     this._lastItem = this._lastItem.previousItem
     return dataToReturn
   }
