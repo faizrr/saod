@@ -13,7 +13,7 @@ export default class Stack {
   isEmpty () {
     return !this._lastItem
   }
-  
+
   get lastItem () {
     return this._lastItem.data
   }
@@ -35,7 +35,7 @@ export default class Stack {
 
   getByIndex (index) {
     let result = this._lastItem
-    for (let i=0; i<=index; i++) {
+    for (let i = 0; i <= index; i++) {
       if (result === null) {
         throw new Error('Invalid index')
       } else if (i === index) {
@@ -48,7 +48,7 @@ export default class Stack {
     return result.data
   }
 
-  *[Symbol.iterator]() {
+  *[Symbol.iterator] () {
     let currentItem = this._lastItem
     while (currentItem) {
       yield currentItem.data

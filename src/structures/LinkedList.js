@@ -56,7 +56,7 @@ export default class LinkedList {
     }
   }
 
-  *[Symbol.iterator]() {
+  *[Symbol.iterator] () {
     let currentItem = this._head
     if (currentItem) {
       do {
@@ -74,7 +74,7 @@ export default class LinkedList {
 
   _find (index) {
     let result = this._head
-    for (let i=0; i<=index; i++) {
+    for (let i = 0; i <= index; i++) {
       if (result === null) {
         throw new Error('Invalid index')
       } else if (i === index) {
