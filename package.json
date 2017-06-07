@@ -6,8 +6,10 @@
     "material-design-icons-iconfont": "^3.0.3",
     "material-icons-css": "^1.0.1",
     "material-ui": "^0.18.2",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-graph-vis": "^0.1.2",
     "react-tap-event-plugin": "^2.0.1",
     "roboto-fontface": "^0.7.0"
   },
