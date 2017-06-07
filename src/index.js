@@ -16,12 +16,7 @@ export const stackInstance = new Stack(render)
 injectTapEventPlugin()
 
 function render () {
-  let computerNodes = []
-  for (let c of stackInstance) {
-    computerNodes.push(c)
-  }
-
-  ReactDOM.render(<App computerNodes={computerNodes} />, document.getElementById('root'))
+  ReactDOM.render(<App computerNodesStack={stackInstance} />, document.getElementById('root'))
   registerServiceWorker()
 }
 

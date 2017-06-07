@@ -9,16 +9,6 @@ import Menu from './components/Menu'
 import ComputerNodeList from './components/ComputerNodeList'
 
 class App extends Component {
-  static defaultProps = {
-    computerNodes: [
-      [
-        { cpu: 'Xeon 10', ram: '8GB' },
-        { cpu: 'Xeon 20', ram: '8GB' },
-        { cpu: 'Xeon 30', ram: '8GB' }
-      ]
-    ]
-  }
-
   render () {
     return (
       <MuiThemeProvider>
@@ -29,7 +19,7 @@ class App extends Component {
           />
           <Menu ref={(c) => { this.menu = c }} />
           <div className='App'>
-            <ComputerNodeList computerNodes={this.props.computerNodes} />
+            <ComputerNodeList computerNodesStack={this.props.computerNodesStack} />
           </div>
         </div>
       </MuiThemeProvider>

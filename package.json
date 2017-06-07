@@ -11,7 +11,8 @@
     "react-dom": "^15.5.4",
     "react-graph-vis": "^0.1.2",
     "react-tap-event-plugin": "^2.0.1",
-    "roboto-fontface": "^0.7.0"
+    "roboto-fontface": "^0.7.0",
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "prettier-standard": "^5.0.0",
