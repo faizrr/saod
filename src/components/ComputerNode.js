@@ -7,9 +7,12 @@ import { Card, CardHeader, CardMedia, CardActions } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 import Graph from 'react-graph-vis'
 
+import { stackInstance } from '../index'
+
 export default class ComputerNode extends Component {
   static propTypes = {
     index: PropTypes.number,
+    withRemoveButton: PropTypes.boolean,
     computers: PropTypes.arrayOf(PropTypes.object)
   }
 
@@ -48,8 +51,8 @@ export default class ComputerNode extends Component {
         />
         <CardActions>
           {
-            this.props.index === 0
-              ? <FlatButton label="Remove node" secondary={true} />
+            this.props.withRemoveButton
+              ? <FlatButton label="Remove node" secondary={true} onTouchTap={() => { stackInstance.pop() }} />
               : null
           }
           <FlatButton label="Add new computer" />

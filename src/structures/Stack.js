@@ -6,8 +6,9 @@ class StackItem {
 }
 
 export default class Stack {
-  constructor () {
+  constructor (afterChange = () => {}) {
     this._lastItem = null
+    this.afterChange = afterChange
   }
 
   isEmpty () {
@@ -20,6 +21,7 @@ export default class Stack {
 
   push (data) {
     this._lastItem = new StackItem(this._lastItem, data)
+    this.afterChange()
   }
 
   pop () {
@@ -30,6 +32,7 @@ export default class Stack {
     }
 
     this._lastItem = this._lastItem.previousItem
+    this.afterChange()
     return dataToReturn
   }
 
