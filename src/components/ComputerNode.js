@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 
 import './ComputerNode.css'
 
-import { Card, CardHeader, CardText } from 'material-ui/Card'
+import { Card, CardHeader, CardMedia, CardActions } from 'material-ui/Card'
+import FlatButton from 'material-ui/FlatButton'
 import Graph from 'react-graph-vis'
 
 export default class ComputerNode extends Component {
@@ -45,9 +46,17 @@ export default class ComputerNode extends Component {
           actAsExpander={true}
           showExpandableButton={true}
         />
-        <CardText expandable={true}>
-          <Graph graph={this.graphDetails} />
-        </CardText>
+        <CardActions>
+          {
+            this.props.index === 0
+              ? <FlatButton label="Remove node" secondary={true} />
+              : null
+          }
+          <FlatButton label="Add new computer" />
+        </CardActions>
+        <CardMedia expandable={true} style={{height: '300px'}}>
+          <Graph graph={this.graphDetails} options={{height: '300px'}} />
+        </CardMedia>
       </Card>
     )
   }
