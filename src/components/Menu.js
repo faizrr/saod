@@ -2,6 +2,10 @@ import React from 'react'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 
+import ExportService from '../services/export'
+
+import { stackInstance } from '../index'
+
 export default class DrawerUndockedExample extends React.Component {
   constructor (props) {
     super(props)
@@ -21,7 +25,7 @@ export default class DrawerUndockedExample extends React.Component {
         onRequestChange={open => this.setState({ open })}
       >
         <MenuItem onTouchTap={this.handleClose}>Import</MenuItem>
-        <MenuItem onTouchTap={this.handleClose}>Export</MenuItem>
+        <MenuItem onTouchTap={() => { ExportService(stackInstance) }}>Export</MenuItem>
       </Drawer>
     )
   }
