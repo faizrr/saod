@@ -48,6 +48,16 @@ export default class Stack {
     return result.data
   }
 
+  cleanUp () {
+    let i = this._lastItem
+    while (i) {
+      const nextItem = i.previous
+      i.previous = null
+      i = nextItem
+    }
+    this._lastItem = null
+  }
+
   *[Symbol.iterator] () {
     let currentItem = this._lastItem
     while (currentItem) {
