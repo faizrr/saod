@@ -9,13 +9,13 @@ import 'material-icons-css/css/material-icons.css'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 import Stack from './structures/Stack'
-export const stackInstance = new Stack(render)
+export const stackInstance = new Stack()
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin()
 
-function render () {
+export function render () {
   ReactDOM.render(<App computerNodesStack={stackInstance} />, document.getElementById('root'))
   registerServiceWorker()
 }
