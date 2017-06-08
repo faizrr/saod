@@ -9,6 +9,7 @@ class LinkedListItem {
 export default class LinkedList {
   constructor () {
     this._head = null
+    this.length = 0
   }
 
   isEmpty () {
@@ -16,6 +17,7 @@ export default class LinkedList {
   }
 
   addByIndex (index, data) {
+    this.length++
     if (this.isEmpty()) {
       this._addFirstElement(data)
     } else {
@@ -26,6 +28,10 @@ export default class LinkedList {
 
       previousItem.next = newItem
       itemToModify.previous = newItem
+
+      if (index === 0) {
+        this._head = newItem
+      }
     }
   }
 
@@ -38,9 +44,11 @@ export default class LinkedList {
       i = nextItem
     }
     this._head = null
+    this.length = 0
   }
 
   removeByIndex (index) {
+    this.length--
     if (index === 0) {
       const itemToRemove = this._head
 
@@ -54,6 +62,15 @@ export default class LinkedList {
       previousItem.next = itemToModify.next
       itemToModify.next = previousItem
     }
+  }
+
+  editByIndex (index, newData) {
+    const element = this._find(index)
+    element.data = newData
+  }
+
+  getByIndex (index) {
+    return this._find(index).data
   }
 
   *[Symbol.iterator] () {
