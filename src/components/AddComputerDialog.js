@@ -15,6 +15,8 @@ const initialState = {
   index: 0
 }
 
+const validStrRegex = new RegExp('^[^-\\s][a-zA-Z0-9_\\s-]+$')
+
 export default class AddComputerDialog extends Component {
   state = Object.assign({}, initialState)
 
@@ -66,10 +68,15 @@ export default class AddComputerDialog extends Component {
   }
 
   isValid = () => {
-    const trimmedCpuString = this.state.cpu.replace(/\s+/g, ' ').trim()
-    const trimmedRamString = this.state.ram.replace(/\s+/g, ' ').trim()
+    return this.isValidCpuString() && this.isValidRamString()
+  }
 
-    return trimmedRamString && trimmedCpuString
+  isValidCpuString = () => {
+    return validStrRegex.test(this.state.cpu)
+  }
+
+  isValidRamString = () => {
+    return validStrRegex.test(this.state.ram)
   }
 
   render() {
@@ -101,15 +108,15 @@ export default class AddComputerDialog extends Component {
       >
         <TextField
           floatingLabelText="CPU"
-          errorText={!this.state.cpu && 'Required'}
+          errorText={!this.isValidCpuString() && 'Invalid'}
           fullWidth={true}
           value={this.state.cpu}
           onChange={(e, value) => { this.setState({ cpu: value }) }}
         />
-        <br /><br />
+        <br />
         <TextField
           floatingLabelText="RAM"
-          errorText={!this.state.ram && 'Required'}
+          errorText={!this.isValidRamString() && 'Invalid'}
           fullWidth={true}
           value={this.state.ram}
           onChange={(e, value) => { this.setState({ ram: value }) }}
