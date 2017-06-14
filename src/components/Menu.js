@@ -5,8 +5,6 @@ import MenuItem from 'material-ui/MenuItem'
 import ImportService from '../services/import'
 import ExportService from '../services/export'
 
-import { stackInstance } from '../index'
-
 const styles = {
   uploadButton: {
     verticalAlign: 'middle',
@@ -37,7 +35,7 @@ export default class DrawerUndockedExample extends React.Component {
   }
 
   handleExportClick = () => {
-    ExportService(stackInstance)
+    ExportService()
     this.handleToggle()
   }
 

@@ -1,46 +1,62 @@
 {
+  "additionalProperties": false,
   "definitions": {},
   "id": "http://example.com/example.json",
-  "items": {
-    "additionalProperties": false,
-    "id": "/items",
-    "properties": {
-      "computers": {
-        "id": "/items/properties/computers",
-        "items": {
-          "additionalProperties": false,
-          "id": "/items/properties/computers/items",
-          "properties": {
-            "cpu": {
-              "id": "/items/properties/computers/items/properties/cpu",
-              "minLength": 1,
-              "type": "string"
-            },
-            "ram": {
-              "id": "/items/properties/computers/items/properties/ram",
-              "minLength": 1,
-              "type": "string"
-            }
-          },
-          "required": [
-            "ram",
-            "cpu"
-          ],
-          "type": "object"
-        },
-        "type": "array"
-      },
-      "id": {
-        "id": "/items/properties/id",
-        "minLength": 1,
-        "type": "string"
-      }
+  "properties": {
+    "name": {
+      "id": "/properties/name",
+      "pattern": "^[^-\\s][a-zA-Z0-9_\\s-]+$",
+      "type": "string"
     },
-    "required": [
-      "computers",
-      "id"
-    ],
-    "type": "object"
+    "nodes": {
+      "id": "/properties/nodes",
+      "items": {
+        "additionalProperties": false,
+        "id": "/properties/nodes/items",
+        "properties": {
+          "computers": {
+            "id": "/properties/nodes/items/properties/computers",
+            "items": {
+              "additionalProperties": false,
+              "id": "/properties/nodes/items/properties/computers/items",
+              "properties": {
+                "cpu": {
+                  "id": "/properties/nodes/items/properties/computers/items/properties/cpu",
+                  "pattern": "^[^-\\s][a-zA-Z0-9_\\s-]+$",
+                  "type": "string"
+                },
+                "ram": {
+                  "id": "/properties/nodes/items/properties/computers/items/properties/ram",
+                  "pattern": "^[^-\\s][a-zA-Z0-9_\\s-]+$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "ram",
+                "cpu"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "id": {
+            "id": "/properties/nodes/items/properties/id",
+            "pattern": "^[^-\\s][a-zA-Z0-9_\\s-]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "computers",
+          "id"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
   },
-  "type": "array"
+  "required": [
+    "nodes",
+    "name"
+  ],
+  "type": "object"
 }

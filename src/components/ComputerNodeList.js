@@ -8,7 +8,6 @@ import ComputerNode from './ComputerNodeRepresentation'
 
 import Stack from '../structures/Stack'
 import ComputersNetwork from '../structures/ComputersNode'
-import { stackInstance } from '../index'
 
 export default class ComputerNodeList extends Component {
   static propTypes = {
@@ -17,12 +16,12 @@ export default class ComputerNodeList extends Component {
 
   addStackItem = () => {
     const newItem = new ComputersNetwork()
-    stackInstance.push(newItem)
+    this.props.computerNodesStack.push(newItem)
     this.forceUpdate()
   }
 
   removeStackItem = () => {
-    stackInstance.pop()
+    this.props.computerNodesStack.pop()
     this.forceUpdate()
   }
 
@@ -32,7 +31,7 @@ export default class ComputerNodeList extends Component {
     return (
       <div className='ComputerNodeList'>
         <FlatButton label="Add new node" style={{ width: '50%', marginBottom: '20px' }} onTouchTap={this.addStackItem} />
-        { !stackInstance.isEmpty()
+        { !this.props.computerNodesStack.isEmpty()
             ? <FlatButton label="Remove head node" secondary={true} style={{ width: '50%', marginBottom: '20px' }} onTouchTap={this.removeStackItem} />
             : null
         }

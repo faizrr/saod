@@ -1,6 +1,6 @@
 import Ajv from 'ajv'
 
-import { render, stackInstance } from '../index'
+import { render, computersNetworkInstance } from '../index'
 
 import ComputersNetwork from '../structures/ComputersNode'
 import LinkedList from '../structures/LinkedList'
@@ -18,23 +18,27 @@ export default function importService (e) {
   }
 
   reader.onloadend = () => {
+    const stackInstance = computersNetworkInstance.network
     stackInstance.cleanUp()
 
     try {
-      let stackItems = JSON.parse(reader.result)
+      let info = JSON.parse(reader.result)
 
       const ajv = new Ajv()
-      const valid = ajv.validate(fileSchema, stackItems)
+      const valid = ajv.validate(fileSchema, info)
 
       if (!valid) {
         throw new Error(ajv.errorsText())
       }
 
+      let stackItems = info.nodes
       stackItems.reverse()
       stackItems.forEach((item) => {
         const networkAsLinkedList = createLinkedList(item.computers)
         stackInstance.push(new ComputersNetwork(item.id, networkAsLinkedList))
       })
+
+      computersNetworkInstance.name = info.name
 
       render()
     } catch (e) {

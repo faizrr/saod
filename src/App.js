@@ -14,7 +14,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div>
           <AppBar
-            title='Super computer network'
+            title={this.props.title}
             onLeftIconButtonTouchTap={() => { this.menu.handleToggle() }}
           />
           <Menu ref={(c) => { this.menu = c }} />
