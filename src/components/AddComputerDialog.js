@@ -15,7 +15,6 @@ const initialState = {
   index: 0
 }
 
-// TODO: add validation
 export default class AddComputerDialog extends Component {
   state = Object.assign({}, initialState)
 
