@@ -11,20 +11,12 @@ export default class ComputersNode {
     this.computers.cleanUp()
   }
 
-  searchByRam (ram) {
-    return this.computers.searchBy('ram', ram)
+  searchBy (...args) {
+    return this.computers.searchBy(...args)
   }
 
-  searchByCpu (cpu) {
-    return this.computers.searchBy('cpu', cpu)
-  }
-
-  searchBackwardByRam (ram) {
-    return this.computers.searchBackwardBy('ram', ram)
-  }
-
-  searchBackwardByCpu (cpu) {
-    return this.computers.searchBackwardBy('cpu', cpu)
+  searchBackwardBy (...args) {
+    return this.computers.searchBackwardBy(...args)
   }
 
   addComputerByIndex (index, details) {
