@@ -9,15 +9,15 @@ import Graph from 'react-graph-vis'
 
 import AddComputerDialog from './AddComputerDialog'
 
-import ComputersNetwork from '../structures/ComputersNetwork'
+import ComputersNode from '../structures/ComputersNode'
 
-export default class ComputerNode extends Component {
+export default class ComputersNodeRepresentation extends Component {
   static propTypes = {
-    node: PropTypes.instanceOf(ComputersNetwork)
+    node: PropTypes.instanceOf(ComputersNode)
   }
 
   get graphDetails () {
-    const computers = Array.from(this.props.node.network)
+    const computers = Array.from(this.props.node.computers)
     const length = computers.length
 
     const forwardEdges = computers.map((computer, i) => {
@@ -47,18 +47,23 @@ export default class ComputerNode extends Component {
   }
 
   addComputer = (index, values) => {
-    this.props.node.network.addByIndex(index, values)
+    this.props.node.addComputerByIndex(index, values)
     this.forceUpdate()
   }
 
   editComputer = (index, values) => {
-    this.props.node.network.editByIndex(index, values)
+    this.props.node.editComputerByIndex(index, values)
+    this.forceUpdate()
+  }
+
+  deleteComputer = (index) => {
+    this.props.node.removeComputerByIndex(index)
     this.forceUpdate()
   }
 
   handleNodeSelect = (obj) => {
     const index = obj.nodes[0]
-    const initialValues = this.props.node.network.getByIndex(index)
+    const initialValues = this.props.node.getComputerByIndex(index)
     this.addComputerDialog.handleOpen({ index, ...initialValues, edit: true })
   }
 
@@ -86,7 +91,8 @@ export default class ComputerNode extends Component {
         <AddComputerDialog
           addComputer={this.addComputer}
           editComputer={this.editComputer}
-          networkLength={this.props.node.network.length}
+          deleteComputer={this.deleteComputer}
+          networkLength={this.props.node.computers.length}
           ref={(c) => { this.addComputerDialog = c }}
         />
       </Card>

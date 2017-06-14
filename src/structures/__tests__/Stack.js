@@ -1,5 +1,5 @@
 import Stack from '../Stack'
-import ComputerNode from '../ComputersNetwork'
+import ComputerNode from '../ComputersNode'
 
 describe('isEmpty', () => {
   it('returns false for empty stack', () => {

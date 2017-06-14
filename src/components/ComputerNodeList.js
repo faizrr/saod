@@ -4,10 +4,10 @@ import shortid from 'shortid'
 
 import FlatButton from 'material-ui/FlatButton'
 
-import ComputerNode from './ComputerNode'
+import ComputerNode from './ComputerNodeRepresentation'
 
 import Stack from '../structures/Stack'
-import ComputersNetwork from '../structures/ComputersNetwork'
+import ComputersNetwork from '../structures/ComputersNode'
 import { stackInstance } from '../index'
 
 export default class ComputerNodeList extends Component {
