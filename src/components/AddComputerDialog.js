@@ -15,6 +15,7 @@ const initialState = {
   index: ''
 }
 
+// TODO: add validation
 export default class AddComputerDialog extends Component {
   state = Object.assign({}, initialState)
 
@@ -39,6 +40,12 @@ export default class AddComputerDialog extends Component {
     this.handleClose()
   }
 
+  handleDelete = () => {
+    const { index } = this.state
+    this.props.deleteComputer(index)
+    this.handleClose()
+  }
+
   get availableIndexes () {
     let items = []
     for (let i=0; i <= this.props.networkLength; i++) {
@@ -52,6 +59,11 @@ export default class AddComputerDialog extends Component {
 
   render() {
     const actions = [
+      this.state.edit && <FlatButton
+        label="Delete"
+        secondary={true}
+        onTouchTap={this.handleDelete}
+      />,
       <FlatButton
         label="Cancel"
         onTouchTap={this.handleClose}
