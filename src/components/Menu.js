@@ -31,6 +31,16 @@ export default class DrawerUndockedExample extends React.Component {
 
   handleToggle = () => this.setState({ open: !this.state.open })
 
+  handleImportClick = (...args) => {
+    ImportService(...args)
+    this.handleToggle()
+  }
+
+  handleExportClick = () => {
+    ExportService(stackInstance)
+    this.handleToggle()
+  }
+
   render () {
     return (
       <Drawer
@@ -41,9 +51,9 @@ export default class DrawerUndockedExample extends React.Component {
       >
         <MenuItem>
           Import
-          <input type='file' onChange={ImportService} style={styles.uploadInput} />
+          <input type='file' onChange={this.handleImportClick} value='' style={styles.uploadInput} />
         </MenuItem>
-        <MenuItem onTouchTap={() => { ExportService(stackInstance) }}>Export</MenuItem>
+        <MenuItem onTouchTap={this.handleExportClick}>Export</MenuItem>
       </Drawer>
     )
   }
