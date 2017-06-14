@@ -12,7 +12,7 @@ const initialState = {
   open: false,
   cpu: '',
   ram: '',
-  index: ''
+  index: 0
 }
 
 // TODO: add validation
@@ -31,11 +31,20 @@ export default class AddComputerDialog extends Component {
   }
 
   handleSubmit = () => {
+    if (!this.isValid()) {
+      return
+    }
+
     const { cpu, ram, index, edit } = this.state
+    const trimmedDetails = {
+      cpu: cpu.replace(/\s+/g, ' ').trim(),
+      ram: ram.replace(/\s+/g, ' ').trim()
+    }
+
     if (edit) {
-      this.props.editComputer(index, { cpu, ram })
+      this.props.editComputer(index, trimmedDetails)
     } else {
-      this.props.addComputer(index, {cpu, ram})
+      this.props.addComputer(index, trimmedDetails)
     }
     this.handleClose()
   }
@@ -55,6 +64,13 @@ export default class AddComputerDialog extends Component {
     }
 
     return items
+  }
+
+  isValid = () => {
+    const trimmedCpuString = this.state.cpu.replace(/\s+/g, ' ').trim()
+    const trimmedRamString = this.state.ram.replace(/\s+/g, ' ').trim()
+
+    return trimmedRamString && trimmedCpuString
   }
 
   render() {
@@ -86,6 +102,7 @@ export default class AddComputerDialog extends Component {
       >
         <TextField
           floatingLabelText="CPU"
+          errorText={!this.state.cpu && 'Required'}
           fullWidth={true}
           value={this.state.cpu}
           onChange={(e, value) => { this.setState({ cpu: value }) }}
@@ -93,6 +110,7 @@ export default class AddComputerDialog extends Component {
         <br /><br />
         <TextField
           floatingLabelText="RAM"
+          errorText={!this.state.ram && 'Required'}
           fullWidth={true}
           value={this.state.ram}
           onChange={(e, value) => { this.setState({ ram: value }) }}
