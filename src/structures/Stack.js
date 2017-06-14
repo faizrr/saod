@@ -1,5 +1,3 @@
-import ComputersNetwork from './ComputersNetwork'
-
 class StackItem {
   constructor (previousItem, data) {
     this.data = data
@@ -52,8 +50,8 @@ export default class Stack {
 
   cleanUp () {
     let i = this._lastItem
-    if (i instanceof ComputersNetwork) {
-      i.network.cleanUp()
+    if (i && typeof i.cleanUp === 'function') {
+      i.cleanUp()
     }
     while (i) {
       const nextItem = i.previous

@@ -1,4 +1,5 @@
 import Stack from '../Stack'
+import ComputerNode from '../ComputersNetwork'
 
 describe('isEmpty', () => {
   it('returns false for empty stack', () => {
@@ -37,6 +38,47 @@ describe('pop', () => {
     s.push('second')
     s.pop()
     expect(s.lastItem).toEqual('first')
+  })
+})
+
+describe('pop for elements with cleanUp function', () => {
+  it('works [1]', () => {
+    const s = new Stack()
+    const computerNode1 = new ComputerNode()
+    const computerNode2 = new ComputerNode()
+    s.push(computerNode1)
+    s.push(computerNode2)
+
+    computerNode1.addComputer(0, { cpu: 'Intel', ram: '1gb' })
+    computerNode1.addComputer(1, { cpu: 'AMD', ram: '1gb' })
+
+    computerNode2.addComputer(0, { cpu: 'ARM', ram: '1gb' })
+    computerNode2.addComputer(1, { cpu: 'Elbrus', ram: '1gb' })
+
+    s.pop()
+
+    const result = Array.from(s)
+    expect(result).toEqual([computerNode1])
+  })
+
+  it('works [2]', () => {
+    const s = new Stack()
+    const computerNode1 = new ComputerNode()
+    const computerNode2 = new ComputerNode()
+    s.push(computerNode1)
+    s.push(computerNode2)
+
+    computerNode1.addComputer(0, { cpu: 'Intel', ram: '1gb' })
+    computerNode1.addComputer(1, { cpu: 'AMD', ram: '1gb' })
+
+    computerNode2.addComputer(0, { cpu: 'ARM', ram: '1gb' })
+    computerNode2.addComputer(1, { cpu: 'Elbrus', ram: '1gb' })
+
+    s.pop()
+    s.pop()
+
+    const result = Array.from(s)
+    expect(result).toEqual([])
   })
 })
 
