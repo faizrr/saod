@@ -49,11 +49,11 @@ describe('pop for elements with cleanUp function', () => {
     s.push(computerNode1)
     s.push(computerNode2)
 
-    computerNode1.addComputer(0, { cpu: 'Intel', ram: '1gb' })
-    computerNode1.addComputer(1, { cpu: 'AMD', ram: '1gb' })
+    computerNode1.addComputerByIndex(0, { cpu: 'Intel', ram: '1gb' })
+    computerNode1.addComputerByIndex(1, { cpu: 'AMD', ram: '1gb' })
 
-    computerNode2.addComputer(0, { cpu: 'ARM', ram: '1gb' })
-    computerNode2.addComputer(1, { cpu: 'Elbrus', ram: '1gb' })
+    computerNode2.addComputerByIndex(0, { cpu: 'ARM', ram: '1gb' })
+    computerNode2.addComputerByIndex(1, { cpu: 'Elbrus', ram: '1gb' })
 
     s.pop()
 
@@ -68,11 +68,11 @@ describe('pop for elements with cleanUp function', () => {
     s.push(computerNode1)
     s.push(computerNode2)
 
-    computerNode1.addComputer(0, { cpu: 'Intel', ram: '1gb' })
-    computerNode1.addComputer(1, { cpu: 'AMD', ram: '1gb' })
+    computerNode1.addComputerByIndex(0, { cpu: 'Intel', ram: '1gb' })
+    computerNode1.addComputerByIndex(1, { cpu: 'AMD', ram: '1gb' })
 
-    computerNode2.addComputer(0, { cpu: 'ARM', ram: '1gb' })
-    computerNode2.addComputer(1, { cpu: 'Elbrus', ram: '1gb' })
+    computerNode2.addComputerByIndex(0, { cpu: 'ARM', ram: '1gb' })
+    computerNode2.addComputerByIndex(1, { cpu: 'Elbrus', ram: '1gb' })
 
     s.pop()
     s.pop()
