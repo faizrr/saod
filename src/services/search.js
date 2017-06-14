@@ -4,7 +4,6 @@ export default function search (data) {
   const { property, query, backward } = data
   const methodForSearch = backward ? 'searchBackwardBy' : 'searchBy'
   const stackItems = Array.from(computersNetworkInstance.network)
-  console.log(data)
 
   let searchResult
   let computerNodeWithMatch
